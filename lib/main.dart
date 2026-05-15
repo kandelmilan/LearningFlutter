@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/views/home_view.dart';
-import 'package:hello_world/views/instagram_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +11,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Flutter Demo', home: InstagramView());
+    return MaterialApp(title: 'Flutter Demo', home: const HomeView());
   }
 }
