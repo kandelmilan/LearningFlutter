@@ -166,7 +166,15 @@ class _CodeitAppState extends State<CodeitApp> {
             ),
           ],
         ),
-        body: Column(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              title: Text("Welcome back , Rajan !"),
+              subtitle: Text("Access your course,progress and achievments"),
+            )
+          ],
+        ),
       ),
     );
   }
