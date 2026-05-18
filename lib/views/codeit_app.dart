@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:hello_world/views/home_view.dart';
 
 class CodeitApp extends StatefulWidget {
   const CodeitApp({super.key});
@@ -172,7 +175,13 @@ class _CodeitAppState extends State<CodeitApp> {
             ListTile(
               title: Text("Welcome back , Rajan !"),
               subtitle: Text("Access your course,progress and achievments"),
-            )
+            ),
+            FilledButton(
+              onPressed: () {
+                Get.to(() => HomeView());
+              },
+              child: Text("Go to Home page"),
+            ),
           ],
         ),
       ),
