@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:hello_world/views/home_view.dart';
+import 'package:get/get.dart';
+import 'package:hello_world/controllers/auth_controller.dart';
+import 'package:hello_world/views/home/home_view.dart';
 import 'package:hello_world/views/login_view.dart';
 import 'package:hello_world/views/register_view.dart';
 import 'package:hello_world/views/splash_view.dart';
 
 void main() {
+  Get.put(AuthController());
   runApp(const MyApp());
 }
 
