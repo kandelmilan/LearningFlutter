@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hello_world/utils/app_size.dart';
-import 'package:hello_world/views/home/SubjectChip.dart';
+import 'package:hello_world/views/home/screen/components/SubjectChip.dart';
+import 'package:hello_world/views/home/screen/components/stat_card_section.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -13,9 +14,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(AppSize.screenPadding),
             child: Column(
@@ -75,6 +76,7 @@ class _HomeViewState extends State<HomeView> {
                     SubjectChip(subject: "Biology"),
                   ],
                 ),
+                Row(children: [StatCardSection()]),
               ],
             ),
           ),
