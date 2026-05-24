@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:hello_world/controllers/auth_controller.dart';
 import 'package:hello_world/utils/app_size.dart';
 
 class RegisterView extends StatefulWidget {
@@ -10,6 +12,11 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  final AuthController controller = Get.put(AuthController());
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +35,7 @@ class _RegisterViewState extends State<RegisterView> {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w700,
                   fontSize: 32,
-                  height: 1.3, 
+                  height: 1.3,
                   // letterSpacing: -0.02 * 32,
                 ),
               ),
@@ -36,6 +43,7 @@ class _RegisterViewState extends State<RegisterView> {
               Text("create an account to continue"),
               Gap(AppSize.vGap),
               TextFormField(
+                controller: nameController,
                 decoration: InputDecoration(
                   label: Text("Full Name"),
                   hint: Text("Enter your Full Name"),
@@ -46,6 +54,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               Gap(AppSize.vGap),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: "Email",
                   hintText: "Enter your Email",
@@ -67,6 +76,7 @@ class _RegisterViewState extends State<RegisterView> {
 
               Gap(AppSize.vGap),
               TextFormField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   labelText: "Password",
                   hintText: "Enter your Password",
@@ -96,7 +106,13 @@ class _RegisterViewState extends State<RegisterView> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.register(
+                      nameController.text.trim(),
+                      emailController.text.trim().toLowerCase(),
+                      passwordController.text.trim(),
+                    );
+                  },
                   child: const Text("Register", style: TextStyle(fontSize: 16)),
                 ),
               ),

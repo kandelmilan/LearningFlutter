@@ -1,0 +1,24 @@
+
+  // Future<void> login(String email, String password) async {
+  //   try {
+  //     isLoading.value = true;
+
+  //     final response = await _loginService.login(
+  //       email: email,
+  //       password: password,
+  //     );
+
+  //     // Example: token or user data
+  //     final data = response.data;
+  //     print("Login Success: $data");
+
+  //     Get.snackbar("Success", "Login successful");
+
+  //     // 👉 Navigate to next screen (Dashboard/Home)
+  //     // Get.offAll(() => HomeView());
+  //   } catch (e) {
+  //     Get.snackbar("Error", e.toString());
+  //   } finally {
+  //     isLoading.value = false;
+  //   }
+  // }
