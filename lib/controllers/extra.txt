@@ -22,3 +22,31 @@
   //     isLoading.value = false;
   //   }
   // }
+
+
+
+
+
+
+
+   return ListView.builder(
+            itemCount: controller.products.value.data.length,
+            itemBuilder: (context, index) {
+              var p = controller.products.value.data[index];
+
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage("${p.image}"),
+                ),
+                title: Text("${p.title}"),
+                subtitle: Text("Price: Rs ${p.price}"),
+
+                onTap: () {
+                  Get.to(() => ProductDetailView(product: p));
+                },
+              );
+            },
+          );
+        }
+      }),
+      

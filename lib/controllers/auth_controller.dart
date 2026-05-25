@@ -1,11 +1,9 @@
 import 'package:get/get.dart';
 import 'package:hello_world/services/auth_service.dart';
-import 'package:hello_world/services/storage_service.dart';
 import 'package:hello_world/views/login_view.dart';
 import 'package:hello_world/views/product_view.dart';
 
 class AuthController extends GetxController {
-  final StorageService storage = StorageService();
   final AuthService _authService = AuthService();
 
   var isLoading = false.obs;
