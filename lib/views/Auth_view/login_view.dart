@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:hello_world/controllers/auth_controller.dart';
 import 'package:hello_world/utils/app_size.dart';
-import 'package:hello_world/views/register_view.dart';
+import 'package:hello_world/views/Auth_view/register_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});

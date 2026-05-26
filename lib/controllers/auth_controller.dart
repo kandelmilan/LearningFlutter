@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:hello_world/services/auth_service.dart';
-import 'package:hello_world/views/login_view.dart';
-import 'package:hello_world/views/product_view.dart';
+import 'package:hello_world/views/Auth_view/login_view.dart';
+import 'package:hello_world/views/product_view/product_view.dart';
 
 class AuthController extends GetxController {
   final AuthService _authService = AuthService();

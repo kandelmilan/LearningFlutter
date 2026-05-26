@@ -1,11 +1,11 @@
-class CategoriesModel {
-  CategoriesModel({required this.success, required this.data});
+class FeaturedModel {
+  FeaturedModel({required this.success, required this.data});
 
   final bool? success;
   final List<Datum> data;
 
-  factory CategoriesModel.fromJson(Map<String, dynamic> json) {
-    return CategoriesModel(
+  factory FeaturedModel.fromJson(Map<String, dynamic> json) {
+    return FeaturedModel(
       success: json["success"],
       data: json["data"] == null
           ? []
@@ -16,33 +16,6 @@ class CategoriesModel {
 
 class Datum {
   Datum({
-    required this.id,
-    required this.title,
-    required this.slug,
-    required this.products,
-  });
-
-  final int? id;
-  final String? title;
-  final String? slug;
-  final List<Product> products;
-
-  factory Datum.fromJson(Map<String, dynamic> json) {
-    return Datum(
-      id: json["id"],
-      title: json["title"],
-      slug: json["slug"],
-      products: json["products"] == null
-          ? []
-          : List<Product>.from(
-              json["products"]!.map((x) => Product.fromJson(x)),
-            ),
-    );
-  }
-}
-
-class Product {
-  Product({
     required this.id,
     required this.title,
     required this.description,
@@ -70,8 +43,8 @@ class Product {
   final dynamic featuredOrder;
   final String? featuredImage;
 
-  factory Product.fromJson(Map<String, dynamic> json) {
-    return Product(
+  factory Datum.fromJson(Map<String, dynamic> json) {
+    return Datum(
       id: json["id"],
       title: json["title"],
       description: json["description"],

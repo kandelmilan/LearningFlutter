@@ -1,21 +1,21 @@
-class CategoriesModel {
-  CategoriesModel({required this.success, required this.data});
+class ProductByCategoryModel {
+  ProductByCategoryModel({required this.success, required this.category});
 
   final bool? success;
-  final List<Datum> data;
+  final Category? category;
 
-  factory CategoriesModel.fromJson(Map<String, dynamic> json) {
-    return CategoriesModel(
+  factory ProductByCategoryModel.fromJson(Map<String, dynamic> json) {
+    return ProductByCategoryModel(
       success: json["success"],
-      data: json["data"] == null
-          ? []
-          : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+      category: json["category"] == null
+          ? null
+          : Category.fromJson(json["category"]),
     );
   }
 }
 
-class Datum {
-  Datum({
+class Category {
+  Category({
     required this.id,
     required this.title,
     required this.slug,
@@ -27,8 +27,8 @@ class Datum {
   final String? slug;
   final List<Product> products;
 
-  factory Datum.fromJson(Map<String, dynamic> json) {
-    return Datum(
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
       id: json["id"],
       title: json["title"],
       slug: json["slug"],
@@ -52,23 +52,17 @@ class Product {
     required this.discountedPrice,
     required this.image,
     required this.category,
-    required this.isFeatured,
-    required this.featuredOrder,
-    required this.featuredImage,
   });
 
-  final dynamic id;
+  final int? id;
   final String? title;
   final String? description;
-  final dynamic price;
+  final int? price;
   final String? discountPercent;
-  final dynamic discountAmount;
-  final dynamic discountedPrice;
+  final int? discountAmount;
+  final int? discountedPrice;
   final String? image;
   final String? category;
-  final bool? isFeatured;
-  final dynamic featuredOrder;
-  final String? featuredImage;
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
@@ -81,9 +75,6 @@ class Product {
       discountedPrice: json["discounted_price"],
       image: json["image"],
       category: json["category"],
-      isFeatured: json["is_featured"],
-      featuredOrder: json["featured_order"],
-      featuredImage: json["featured_image"],
     );
   }
 }

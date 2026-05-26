@@ -50,3 +50,54 @@
         }
       }),
       
+      \
+
+
+
+
+
+
+      // Obx(() {
+            //   if (productController.isLoading.value) {
+            //     return const LinearProgressIndicator();
+            //   }
+            //   return CarouselSlider(
+            //     options: CarouselOptions(
+            //       height: 180,
+            //       autoPlay: true,
+            //       enlargeCenterPage: true,
+            //       viewportFraction: 0.85,
+            //       aspectRatio: 16 / 9,
+            //       autoPlayInterval: const Duration(seconds: 4),
+            //     ),
+            //     items: productController.featuredProducts.value.data.map((i) {
+            //       return Builder(
+            //         builder: (context) {
+            //           return Container(
+            //             margin: const EdgeInsets.symmetric(horizontal: 6),
+            //             decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(20),
+            //               boxShadow: [
+            //                 BoxShadow(
+            //                   color: Colors.black.withOpacity(0.1),
+            //                   blurRadius: 10,
+            //                   spreadRadius: 2,
+            //                 ),
+            //               ],
+            //             ),
+            //             child: ClipRRect(
+            //               borderRadius: BorderRadius.circular(20),
+            //               child: Image.network(
+            //                 "${i.image}",
+            //                 fit: BoxFit.cover,
+            //                 width: double.infinity,
+            //               ),
+            //             ),
+            //           );
+            //         },
+            //       );
+            //     }).toList(),
+            //   );
+            // }),
+           
+           
