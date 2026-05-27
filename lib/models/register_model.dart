@@ -1,18 +1,21 @@
 class RegisterModel {
-  final String? name;
-  final String? email;
-  final String? password;
   RegisterModel({
-    required this.name,
-    required this.email,
-    required this.password,
+    required this.success,
+    required this.token,
+    required this.message,
   });
+
+  final bool? success;
+  final String? token;
+  final String? message;
 
   factory RegisterModel.fromJson(Map<String, dynamic> json) {
     return RegisterModel(
-      name: json["name"],
-      email: json["email"],
-      password: json["password"],
+      success: json["success"] == true || json["success"].toString() == "true",
+
+      token: json["token"]?.toString(),
+
+      message: json["message"]?.toString(),
     );
   }
 }

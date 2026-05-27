@@ -1,58 +1,150 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_world/models/login_model.dart';
+import 'package:hello_world/models/register_model.dart';
 import 'package:hello_world/services/auth_service.dart';
 import 'package:hello_world/views/Auth_view/login_view.dart';
 import 'package:hello_world/views/product_view/product_view.dart';
 
 class AuthController extends GetxController {
-  final AuthService _authService = AuthService();
-
   var isLoading = false.obs;
+  var obsecure = true.obs;
 
-  Future<void> login(String email, String password) async {
+  void tooglePassword() {
+    obsecure.value = !obsecure.value;
+  }
+
+  var registerUser = RegisterModel(
+    success: false,
+    token: null,
+    message: null,
+  ).obs;
+  var loginUser = LoginModel(success: false, token: null, message: null).obs;
+
+  var name = TextEditingController();
+  var email = TextEditingController();
+  var password = TextEditingController();
+
+  //register controller
+  Future register() async {
     try {
-      isLoading.value = true;
+      isLoading(true);
 
-      final response = await _authService.login(email, password);
+      print("REGISTER STARTED");
 
-      final data = response.data;
+      var response = await AuthService.register(
+        name.text.trim(),
+        email.text.trim(),
+        password.text.trim(),
+      );
 
-      print("LOGIN RESPONSE: $data");
+      print("RESPONSE RECEIVED: ${response?.data}");
 
-      if (data["success"] == false) {
-        Get.snackbar("Login Failed", data["message"]);
-        return;
+      if (response != null) {
+        registerUser.value = RegisterModel.fromJson(response.data);
+
+        print("SUCCESS VALUE: ${registerUser.value.success}");
+
+        if (registerUser.value.success == true) {
+          Get.snackbar(
+            "Success",
+            registerUser.value.message ?? "Registration Successful",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+            duration: const Duration(seconds: 2),
+          );
+          Get.offAll(() => LoginView());
+        } else {
+          Get.snackbar(
+            "Error",
+            registerUser.value.message ?? "Registration Failed",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        }
       }
+    } catch (e, stack) {
+      print("ERROR: $e");
+      print(stack);
 
-      // SAVE TOKEN HERE
-      // final token = data["token"];
-      // storage.saveToken(token);
-
-      // print("TOKEN SAVED: $token");
-
-      Get.snackbar("Success", "Login successful");
-
-      Get.offAll(() => ProductView());
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
+      Get.snackbar(
+        "Exception",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     } finally {
-      isLoading.value = false;
+      isLoading(false);
     }
   }
 
-  Future<void> register(String name, String email, String password) async {
+  //login controller
+  Future login() async {
     try {
-      isLoading.value = true;
+      isLoading(true);
 
-      final res = await _authService.register(name, email, password);
+      print("LOGIN STARTED");
 
-      print(res.data);
+      var response = await AuthService.login(
+        email.text.trim(),
+        password.text.trim(),
+      );
 
-      Get.snackbar("Success", "Register successful");
-      Get.offAll(() => LoginView());
-    } catch (e) {
-      Get.snackbar("Error", e.toString());
+      print("RESPONSE RECEIVED: ${response?.data}");
+
+      if (response != null) {
+        loginUser.value = LoginModel.fromJson(response.data);
+
+        print("SUCCESS VALUE: ${registerUser.value.success}");
+
+        if (loginUser.value.success == true) {
+          Get.snackbar(
+            "Success",
+            loginUser.value.message ?? "Registration Successful",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+            duration: const Duration(seconds: 2),
+          );
+          Get.offAll(() => ProductView());
+        } else {
+          Get.snackbar(
+            "Error",
+            loginUser.value.message ?? "Registration Failed",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        }
+      }
+    } catch (e, stack) {
+      print("ERROR: $e");
+      print(stack);
+
+      Get.snackbar(
+        "Exception",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     } finally {
-      isLoading.value = false;
+      isLoading(false);
     }
+  }
+
+  void checkAuth() {
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.offAll(() => LoginView());
+    });
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    checkAuth();
   }
 }

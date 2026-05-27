@@ -1,28 +1,15 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:hello_world/controllers/auth_controller.dart';
 import 'package:hello_world/utils/app_size.dart';
 import 'package:hello_world/views/Auth_view/register_view.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends GetView<AuthController> {
   const LoginView({super.key});
-
-  @override
-  State<LoginView> createState() => _LoginViewState();
-}
-
-class _LoginViewState extends State<LoginView> {
-  final AuthController controller = Get.put(AuthController());
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
 
                 /// EMAIL
                 TextFormField(
-                  controller: emailController,
+                  controller: controller.email,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: "Email",
@@ -77,31 +64,37 @@ class _LoginViewState extends State<LoginView> {
 
                 Gap(AppSize.vGap),
 
-                /// PASSWORD
-                TextFormField(
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                    hintText: "Enter your Password",
-                    suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.visibility_off_sharp),
+                Obx(() {
+                  return TextFormField(
+                    controller: controller.password,
+                    obscureText: controller.obsecure.value,
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                      hintText: "Enter your Password",
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          controller.tooglePassword();
+                        },
+                        icon: controller.obsecure.value == true
+                            ? Icon(Icons.visibility_off)
+                            : Icon(Icons.visibility),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(color: Colors.grey.shade300),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: const BorderSide(width: 1.5),
+                      ),
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: Colors.grey.shade300),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: const BorderSide(width: 1.5),
-                    ),
-                  ),
-                ),
+                  );
+                }),
 
+                /// PASSWORD
                 Gap(AppSize.vGap),
 
                 /// REMEMBER
@@ -118,40 +111,38 @@ class _LoginViewState extends State<LoginView> {
                 Gap(AppSize.vGap * 1.2),
 
                 /// LOGIN BUTTON (LOADING STATE)
-                Obx(() {
-                  return SizedBox(
-                    width: double.infinity,
-                    height: 55,
-                    child: FilledButton(
-                      onPressed: controller.isLoading.value
-                          ? null
-                          : () {
-                              final email = emailController.text.trim();
-                              final password = passwordController.text.trim();
-
-                              if (email.isEmpty || password.isEmpty) {
-                                Get.snackbar(
-                                  "Error",
-                                  "Email and password required",
-                                );
-                                return;
-                              }
-
-                              controller.login(email, password);
-                            },
-                      child: controller.isLoading.value
-                          ? const SizedBox(
-                              height: 22,
-                              width: 22,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 2,
-                              ),
-                            )
-                          : const Text("Login", style: TextStyle(fontSize: 16)),
+                SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                     ),
-                  );
-                }),
+                    onPressed: () async {
+                      try {
+                        Loader.show(context);
+                        print("Login Button Clicked");
+                        await controller.login();
+                        print("Login Success");
+                      } catch (e) {
+                        print(e);
+
+                        Get.snackbar(
+                          "Error",
+                          e.toString(),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      } finally {
+                        if (Loader.isShown) {
+                          Loader.hide();
+                        }
+                      }
+                    },
+                    child: const Text("Login", style: TextStyle(fontSize: 16)),
+                  ),
+                ),
 
                 Gap(AppSize.vGap),
 
@@ -210,6 +201,10 @@ class _LoginViewState extends State<LoginView> {
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.bold,
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Get.to(() => const RegisterView());
+                            },
                         ),
                       ],
                     ),

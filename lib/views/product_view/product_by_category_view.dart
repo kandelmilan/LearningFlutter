@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:hello_world/controllers/category_controller.dart';
 import 'package:hello_world/controllers/product_controller.dart';
 import 'package:hello_world/views/product_view/product_details_view.dart';
-import 'package:hello_world/views/product_view/product_view.dart';
 
 class ProductByCategoryView extends GetView<CategoryController> {
   const ProductByCategoryView({super.key});

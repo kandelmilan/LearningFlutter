@@ -1,21 +1,22 @@
-import 'package:dio/dio.dart';
+import 'package:hello_world/utils/api_connect.dart';
 
 class AuthService {
-  final Dio _dio = Dio(
-    BaseOptions(baseUrl: "https://ecommerce.codeitappsware.com/api/"),
-  );
-
-  Future<Response> login(String email, String password) async {
-    return await _dio.post(
-      "login",
-      data: {"email": email, "password": password},
-    );
-  }
-
-  Future<Response> register(String name, String email, String password) async {
-    return await _dio.post(
+  //register
+  static Future register(String name, String email, String password) async {
+    var response = await ApiConnect.dio.post(
       "register",
       data: {"name": name, "email": email, "password": password},
     );
+    return response;
+  }
+
+  //login
+
+  static Future login(String email, String password) async {
+    var response = await ApiConnect.dio.post(
+      "login",
+      data: {"email": email, "password": password},
+    );
+    return response;
   }
 }

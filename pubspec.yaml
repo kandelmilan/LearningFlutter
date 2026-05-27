@@ -39,6 +39,9 @@ dependencies:
   dio: ^5.9.2
   get_storage: ^2.1.1
   carousel_slider: ^5.1.2
+  flutter_overlay_loader: ^2.0.0
+  requests_inspector: ^3.4.1
+
 
 dev_dependencies:
   flutter_test:
