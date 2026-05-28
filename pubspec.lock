@@ -69,10 +69,10 @@ packages:
     dependency: transitive
     description:
       name: connectivity_plus
-      sha256: "62ffa266d9a23b79fb3fcbc206afc00bb979417ba57b1324c546b5aab95ba057"
+      sha256: b5e72753cf63becce2c61fd04dfe0f1c430cc5278b53a1342dc5ad839eab29ec
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.1"
+    version: "6.1.5"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -292,10 +292,18 @@ packages:
     dependency: transitive
     description:
       name: graphql_flutter
-      sha256: "4164962170998bc88bed833d1aa6efc5c3a85cbc8e66a8e62f790b43f4953980"
+      sha256: "0fef9dc2483c4f21c6ac93cd2ef0b820542fc0ce6db6efa87367326d7f36ade4"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.0"
+    version: "5.2.1"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   hive_ce:
     dependency: transitive
     description:
@@ -580,10 +588,10 @@ packages:
     dependency: "direct main"
     description:
       name: requests_inspector
-      sha256: "4c782bcbdfd521194b89a41376bbe087f807bfbb7c4731c9bd48786fdee5f42b"
+      sha256: b92f8725d7cf51ea7761c3d03a871a821fbb153a0f572419b9996233666054e4
       url: "https://pub.dev"
     source: hosted
-    version: "3.5.0"
+    version: "5.4.0"
   rxdart:
     dependency: transitive
     description:
@@ -596,50 +604,34 @@ packages:
     dependency: transitive
     description:
       name: sensors_plus
-      sha256: "362c8f4f001838b90dd5206b898bbad941bc0142479eab9a3415f0f79e622908"
+      sha256: "89e2bfc3d883743539ce5774a2b93df61effde40ff958ecad78cd66b1a8b8d52"
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.1"
+    version: "6.1.2"
   sensors_plus_platform_interface:
     dependency: transitive
     description:
       name: sensors_plus_platform_interface
-      sha256: bc472d6cfd622acb4f020e726433ee31788b038056691ba433fec80e448a094f
+      sha256: "58815d2f5e46c0c41c40fb39375d3f127306f7742efe3b891c0b1c87e2b5cd5d"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
-  sensors_plus_web:
-    dependency: transitive
-    description:
-      name: sensors_plus_web
-      sha256: fca8d7d9ab6233b2a059952666415508e252420be1ef54f092d07884da53ec5e
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
-  shake:
-    dependency: transitive
-    description:
-      name: shake
-      sha256: "107546951c6b8f5e4c2dca66dfb3aa27dd1a853b4e9a26c9aea224b167045023"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
+    version: "2.0.1"
   share_plus:
     dependency: transitive
     description:
       name: share_plus
-      sha256: "3ef39599b00059db0990ca2e30fca0a29d8b37aae924d60063f8e0184cf20900"
+      sha256: "223873d106614442ea6f20db5a038685cc5b32a2fba81cdecaefbbae0523f7fa"
       url: "https://pub.dev"
     source: hosted
-    version: "7.2.2"
+    version: "12.0.2"
   share_plus_platform_interface:
     dependency: transitive
     description:
       name: share_plus_platform_interface
-      sha256: "251eb156a8b5fa9ce033747d73535bf53911071f8d3b6f4f0b578505ce0d4496"
+      sha256: "88023e53a13429bd65d8e85e11a9b484f49d4c190abbd96c7932b74d6927cc9a"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0"
+    version: "6.1.0"
   sky_engine:
     dependency: transitive
     description: flutter

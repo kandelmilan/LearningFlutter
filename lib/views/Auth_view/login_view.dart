@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:hello_world/controllers/auth_controller.dart';
 import 'package:hello_world/utils/app_size.dart';
+import 'package:hello_world/utils/app_string.dart';
 import 'package:hello_world/views/Auth_view/register_view.dart';
 
 class LoginView extends GetView<AuthController> {
@@ -21,7 +21,7 @@ class LoginView extends GetView<AuthController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Image.asset("images/logo.png", height: 200)),
+                Center(child: Image.asset(AppString.Logo, height: 200)),
 
                 Text(
                   "Sign in to your Account",

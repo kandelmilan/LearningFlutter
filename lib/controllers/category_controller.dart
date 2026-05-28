@@ -2,13 +2,12 @@ import 'package:get/get.dart';
 import 'package:hello_world/models/category_model.dart';
 import 'package:hello_world/models/product_by_category_model.dart';
 import 'package:hello_world/services/category_service.dart';
-import 'package:hello_world/services/product_service.dart';
 
 class CategoryController extends GetxController {
   var category = CategoriesModel(success: false, data: []).obs;
   var products = ProductByCategoryModel(success: false, category: null).obs;
-
   var isLoading = false.obs;
+
   Future fetchCategory() async {
     try {
       isLoading(true);

@@ -24,7 +24,6 @@ class ProductByCategoryView extends GetView<CategoryController> {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
-
         final products = controller.products.value.category?.products ?? [];
 
         if (products.isEmpty) {

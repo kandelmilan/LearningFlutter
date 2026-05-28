@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hello_world/models/login_model.dart';
 import 'package:hello_world/models/register_model.dart';
 import 'package:hello_world/services/auth_service.dart';
+import 'package:hello_world/services/storage_service.dart';
 import 'package:hello_world/views/Auth_view/login_view.dart';
 import 'package:hello_world/views/product_view/product_view.dart';
 
@@ -101,6 +102,12 @@ class AuthController extends GetxController {
         print("SUCCESS VALUE: ${registerUser.value.success}");
 
         if (loginUser.value.success == true) {
+          String? token = loginUser.value.token;
+
+          if (token != null) {
+            StorageService.saveToken(token);
+            print("TOKEN SAVED : ${token}");
+          }
           Get.snackbar(
             "Success",
             loginUser.value.message ?? "Registration Successful",
@@ -136,9 +143,16 @@ class AuthController extends GetxController {
     }
   }
 
+  //for splash screen 3 sec
   void checkAuth() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.offAll(() => LoginView());
+      // String? token = StorageService.getToken();
+
+      // if (token != null) {
+      //   Get.offAll(() => ProductView());
+      // } else {
+      //   Get.offAll(() => LoginView());
+      // }
     });
   }
 
