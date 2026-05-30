@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_world/controllers/category_controller.dart';
-import 'package:hello_world/controllers/product_controller.dart';
 import 'package:hello_world/views/product_view/product_details_view.dart';
 
 class ProductByCategoryView extends GetView<CategoryController> {
@@ -9,8 +8,6 @@ class ProductByCategoryView extends GetView<CategoryController> {
 
   @override
   Widget build(BuildContext context) {
-    var productController = Get.find<ProductController>();
-
     return Scaffold(
       appBar: AppBar(
         title: Obx(
